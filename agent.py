@@ -35,7 +35,7 @@ class Agent:
             arm: the arm to pull
         '''
         if rd.random() < self.epsilon:
-            return rd.randrange(self.k)
+            return rd.randrange(0, self.k)
         else:
             return int(np.argmax(self.Q))
 
@@ -49,4 +49,4 @@ class Agent:
             None
         '''
         self.N[arm] += 1
-        self.Q[arm] += (reward - self.Q[arm]) / self.N[arm]
+        self.Q[arm] += (1/self.N[arm]) * (reward - self.Q[arm])

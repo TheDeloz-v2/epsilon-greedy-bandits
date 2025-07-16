@@ -34,7 +34,7 @@ def run_experiment(epsilon, steps=1000, k=10, seed=None):
         r = bandit.pull(arm)
         agent.update_estimates(arm, r)
         rewards[t] = r
-        cumulative[t] = rewards[:t+1].sum()
+        cumulative[t] = rewards[:t+1].sum() / (t+1)
     
     # PLot
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
@@ -65,7 +65,7 @@ def run_experiment(epsilon, steps=1000, k=10, seed=None):
 if __name__ == "__main__":
     
     epsilon = [0, 0.01, 0.1, 0.5]
-    steps = 10000
+    steps = 1000
     k = 10
     base_seed = 42
     
